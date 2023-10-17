@@ -12,6 +12,22 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  <!--Disable the 2FA-->
+  <% if resource.otp_required_for_login %>
+    <div class="field m-4">
+      <%= f.label :otp_attempt %><br />
+      <i>Enter OTP to disable Two Factor Authenticator</i><br>
+      <%= f.text_field :otp_attempt, autofocus: true, class: "border border-[#000] bg-red"%>
+    </div>
+    <% else %>
+      <div class="field m-4">
+        <%= f.label :otp_attempt %>
+        <br>
+        <i>Enter OTP?</i>
+        <%= link_to "Enable 2FA", enable_otp_show_qr_path %>
+      </div>
+    <% end %>
+
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>

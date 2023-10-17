@@ -1,0 +1,19 @@
+<h2>Scan QR Code to Enable Authentication</h2>
+<div>
+  <div>
+    <%= raw RQRCode::QRCode.new(@provisioning_uri, :svg, :level => :l, :unit => 2).as_svg %>
+
+  </div>
+
+  <%= form_tag(enable_otp_verify_path, method: :post) do %>
+    <div>
+      <label>Enter OTP Code</label>
+      <%= text_field_tag(:otp_attempt) %>
+    </div>
+    <div>
+      <%= submit_tag "Verify and Enable", class: "font-bold border border-[#000000] m-12" %>
+    </div>
+  <% end %>
+  <%= link_to "Back", edit_user_registration_path %>
+
+</div>
