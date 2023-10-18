@@ -6,3 +6,7 @@
 Rails.application.config.filter_parameters += [
   :passw, :secret, :token, :_key, :crypt, :salt, :certificate, :otp, :ssn
 ]
+
+#Add OTP to the list of filtered parameters to prevent it from being logged
+
+Rails.application.config.filter_parameters += [:otp_attempt]

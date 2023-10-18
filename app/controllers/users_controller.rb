@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def verify_otp
     verifier = Rails.application.message_verifier(:otp_session)
-    user_id = verifier.verify(params[:otp_token])
+    user_id = verifier.verify(session[:otp_token])
     user = User.find(user_id)
 
     if user.validate_and_consume_otp!(params[:otp_attempt])

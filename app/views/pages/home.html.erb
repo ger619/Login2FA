@@ -5,8 +5,10 @@
     <p>Hi <strong><%= current_user.email %></strong></p>
     <p><%= link_to "Edit Registration", edit_user_registration_path %></p>
     <p><%= link_to "Logout", destroy_user_session_path, method: :delete, data:{turbo_method: :delete}%></p>
+    <%= raw RQRCode::QRCode.new(current_user.otp_provisioning_uri(current_user.email, issuer: "Devise-Two-Factor-Login2FA"), :svg, :level => :l, :unit => 2).as_svg %>
 
-  <% else %>
+
+<% else %>
     <p><%= link_to "Sign Up", new_user_registration_path %></p>
     <p><%= link_to "Login", new_user_session_path %>></p>
   <% end %>
@@ -16,7 +18,6 @@
     <p>Generate a QR code that uses both</p>
     <p>the URL and the title of the page</p>
   </div>
-  <%= raw RQRCode::QRCode.new(current_user.otp_provisioning_uri(current_user.email, issuer: "Devise-Two-Factor-Login2FA"), :svg, :level => :l, :unit => 2).as_svg %>
 
 </div>
 
