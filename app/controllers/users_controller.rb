@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       current_user.save!
       redirect_to edit_user_registration_path, notice: '2FA enabled successfully.'
     else
-      redirect_to enable_otp_show_qr_users_path, alert: 'Invalid OTP code.'
+      redirect_to enable_otp_show_qr_path, alert: 'Invalid OTP code.'
     end
   end
 end
