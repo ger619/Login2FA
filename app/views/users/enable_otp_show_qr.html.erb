@@ -8,8 +8,11 @@
           Scan QR Code to Enable Authentication
         </h1>
         <form class="space-y-4 md:space-y-6" action="#">
-          <div  class="w-[300px]">
-            <%= raw RQRCode::QRCode.new(@provisioning_uri, :svg, :level => :l, :unit => 2).as_svg %>
+          <div  class="ml-2">
+            <%= raw RQRCode::QRCode.new(@provisioning_uri, :svg, :level => :l, :unit => 2).as_svg(color: "000",
+                                                                                                  shape_rendering: "crispEdges",
+                                                                                                  module_size: 9,
+                                                                                                  use_path: true,) %>
           </div>
 
             <div>
